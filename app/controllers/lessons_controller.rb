@@ -57,6 +57,12 @@ class LessonsController < ApplicationController
     end
   end
 
+  def by_module
+    @module_number = params[:module_number]
+    @lessons = Lesson.where(module_number: @module_number).order(:position)
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lesson

@@ -1,16 +1,17 @@
-<p style="color: green"><%= notice %></p>
+<h1 class="mb-4">🧩 Modules disponibles</h1>
 
-<% content_for :title, "Lessons" %>
+<% modules = Lesson.select(:module_number).distinct.order(:module_number) %>
 
-<h1>Lessons</h1>
-
-<div id="lessons">
-  <% @lessons.each do |lesson| %>
-    <%= render lesson %>
-    <p>
-      <%= link_to "Show this lesson", lesson %>
-    </p>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <% modules.each do |mod| %>
+    <div class="col">
+      <div class="card h-100 shadow">
+        <div class="card-body">
+          <h4 class="card-title">📘 Module <%= mod.module_number %></h4>
+          <p class="card-text">Découvre les leçons du module <%= mod.module_number %> à ton rythme !</p>
+          <%= link_to "Voir les leçons", module_lessons_path(mod.module_number), class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>
-
-<%= link_to "New lesson", new_lesson_path %>

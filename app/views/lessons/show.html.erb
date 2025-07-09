@@ -1,10 +1,21 @@
-<p style="color: green"><%= notice %></p>
+<%# app/views/lessons/show.html.erb %>
 
-<%= render @lesson %>
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-title"><%= @lesson.title %></h1>
+    <p class="badge bg-primary text-uppercase"><%= @lesson.level %></p>
+    <hr>
 
-<div>
-  <%= link_to "Edit this lesson", edit_lesson_path(@lesson) %> |
-  <%= link_to "Back to lessons", lessons_path %>
+    <div class="card-text">
+      <%= @lesson.content.html_safe %>
+    </div>
 
-  <%= button_to "Destroy this lesson", @lesson, method: :delete %>
+    <div class="mt-4 d-flex justify-content-between">
+      <%= link_to "← Retour aux leçons", lessons_path, class: "btn btn-outline-secondary" %>
+      <div>
+        <%= link_to "✏️ Modifier", edit_lesson_path(@lesson), class: "btn btn-outline-primary me-2" %>
+        <%= button_to "🗑️ Supprimer", @lesson, method: :delete, data: { confirm: "Es-tu sûr ?" }, class: "btn btn-outline-danger" %>
+      </div>
+    </div>
+  </div>
 </div>

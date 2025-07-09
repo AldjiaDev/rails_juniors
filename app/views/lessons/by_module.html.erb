@@ -1,0 +1,22 @@
+<h1 class="mb-4">📦 Module <%= @module_number %> – Leçons</h1>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <% @lessons.each do |lesson| %>
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title"><%= lesson.title %></h5>
+          <p class="badge bg-success text-uppercase"><%= lesson.level %></p>
+          <p class="card-text text-muted mt-2">
+            <%= truncate(strip_tags(lesson.content), length: 150) %>
+          </p>
+          <%= link_to "Voir la leçon", lesson_path(lesson), class: "btn btn-primary btn-sm" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="mt-4">
+  <%= link_to "← Retour aux modules", lessons_path, class: "btn btn-outline-secondary" %>
+</div>
