@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  namespace :kids do
+    get "dashboard/index"
+  end
+  namespace :parents do
+    get "dashboard/index"
+  end
+  devise_for :kids
+  devise_for :parents
   get "pages/home"
   resources :lessons
   root "pages#home"
@@ -16,4 +24,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  namespace :parents do
+    get "dashboard", to: "dashboard#index"
+  end
+
+  namespace :kids do
+    get "dashboard", to: "dashboard#index"
+  end
 end

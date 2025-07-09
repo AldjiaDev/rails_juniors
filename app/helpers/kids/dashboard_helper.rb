@@ -1,0 +1,2 @@
+module Kids::DashboardHelper
+end

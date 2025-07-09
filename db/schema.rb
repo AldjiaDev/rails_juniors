@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_09_120828) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_09_124910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "kids", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_kids_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_kids_on_reset_password_token", unique: true
+  end
 
   create_table "lessons", force: :cascade do |t|
     t.string "title"
@@ -23,5 +35,17 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_09_120828) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "module_number"
+  end
+
+  create_table "parents", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_parents_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_parents_on_reset_password_token", unique: true
   end
 end
