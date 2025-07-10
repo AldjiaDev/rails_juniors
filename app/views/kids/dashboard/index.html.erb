@@ -1,2 +1,11 @@
-<h1>Kids::Dashboard#index</h1>
-<p>Find me in app/views/kids/dashboard/index.html.erb</p>
+<h1>Bienvenue, <%= current_kid.email %> 👋</h1>
+
+<h3 class="mt-4">📚 Ta progression par module</h3>
+<ul>
+  <% @progress_by_module.each do |mod_num, done, total| %>
+    <li>
+      Module <%= mod_num %> :
+      <strong><%= done %> / <%= total %></strong> leçons terminées
+    </li>
+  <% end %>
+</ul>

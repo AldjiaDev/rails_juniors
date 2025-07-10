@@ -1,0 +1,9 @@
+<h1>Mes enfants</h1>
+
+<ul>
+  <% @kids.each do |kid| %>
+    <li><%= kid.email %></li>
+  <% end %>
+</ul>
+
+<%= link_to "Ajouter un enfant", new_parents_kid_path %>

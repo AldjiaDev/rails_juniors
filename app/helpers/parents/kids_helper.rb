@@ -1,0 +1,2 @@
+module Parents::KidsHelper
+end

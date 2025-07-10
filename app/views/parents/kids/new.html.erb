@@ -1,0 +1,22 @@
+<h1>Ajouter un enfant</h1>
+
+<%= form_with model: @kid, url: parents_kids_path do |f| %>
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <div>
+    <%= f.submit "Créer l'enfant" %>
+  </div>
+<% end %>

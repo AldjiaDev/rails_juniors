@@ -1,34 +1,26 @@
 Rails.application.routes.draw do
-  namespace :kids do
-    get "dashboard/index"
-  end
-  namespace :parents do
-    get "dashboard/index"
-  end
   devise_for :kids
   devise_for :parents
-  get "pages/home"
-  resources :lessons
-  root "pages#home"
-  get "lessons/modules/:module_number", to: "lessons#by_module", as: :module_lessons
-
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  # Render dynamic PWA files from app/views/pwa/*
-  get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-  get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-
-  # Defines the root path route ("/")
-  # root "posts#index"
-  namespace :parents do
-    get "dashboard", to: "dashboard#index"
-  end
 
   namespace :kids do
     get "dashboard", to: "dashboard#index"
   end
+
+  namespace :parents do
+    get "dashboard", to: "dashboard#index"
+    resources :kids, only: [:index, :new, :create]
+  end
+
+  get "pages/home"
+  root "pages#home"
+
+  resources :lessons
+  get "lessons/modules/:module_number", to: "lessons#by_module", as: :module_lessons
+
+  # Health check
+  get "up" => "rails/health#show", as: :rails_health_check
+
+  # PWA
+  get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 end
